@@ -2,7 +2,7 @@
 
 Video playback on an original PlayStation (PS1 / PSone), streamed from an SD card through **controller port 2** by a Raspberry Pi Pico 2.
 
-[![PS1 video player through the controller port](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)](https://youtu.be/Tz3f0jy09XI)
+[![video that explains the details](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)](https://youtu.be/Tz3f0jy09XI)
 
 
 ```
