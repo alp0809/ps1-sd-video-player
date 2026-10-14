@@ -177,8 +177,8 @@ Every frame is one transaction on the controller bus. The PS1 is the master and 
 
 The PS1 player (`ps1/`), the video converter (`pc/make_video.py`) and the
 SD test firmware (`sdtest/`) were written by Claude, Anthropic's AI assistant.
-The Pico firmware (`pico/`) writed by me(alp0809) 
-everything on a real PSone.
+The Pico firmware (`pico/`) was written by me (alp0809). I also built the
+hardware and tested everything on a real PSone.
 
 ## Credits
 
