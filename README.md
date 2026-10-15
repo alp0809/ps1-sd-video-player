@@ -2,8 +2,7 @@
 
 Video playback on an original PlayStation (PS1 / PSone), streamed from an SD card through **controller port 2** by a Raspberry Pi Pico 2.
 
-[![video that explains the details](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)](https://youtu.be/Tz3f0jy09XI)
-
+   [![Video that explains the details](https://img.youtube.com/vi/Tz3f0jy09XI/maxresdefault.jpg)](https://youtu.be/Tz3f0jy09XI)
 
 ```
 PC: make_video.py  ->  SD card (video.bin)  ->  Pico 2  ->  controller port 2  ->  PS1: sioplay
@@ -31,7 +30,7 @@ The Pico acts as a custom device on the PS1's controller/memory-card bus (SIO0).
 | 16 colours (`--mode color16`) | 128×96, enlarged 2× | 0.7–2 KB | 10 fps |
 | Raw colour (`--mode color`) | 128×128, 15-bit | 32 KB | ~1 fps |
 
-Black & white stores only the pixels that flip since the previous frame, as run lengths; it was made for Bad Apple!!. The 16-colour mode picks a palette per scene (k-means), keeps still areas stable, and sends only changed pixels as skip / literal / fill tokens. The Pico doesn't care what is inside a frame, so new formats only change the PC script and the PS1 program.
+Black & white stores only the pixels that flip since the previous frame, as run lengths. The 16-colour mode picks a palette per scene (k-means), keeps still areas stable, and sends only changed pixels as skip / literal / fill tokens. The Pico doesn't care what is inside a frame, so new formats only change the PC script and the PS1 program.
 
 ## Requirements
 
@@ -69,14 +68,6 @@ Black & white stores only the pixels that flip since the previous frame, as run 
 | MISO (7) | GP16 | 21 |
 
 A bare card is 3.3 V only. SD modules with a regulator chip want 5 V on VBUS (pin 40) instead. Keep the SD wires short.
-
-**Safety**
-
-- Never connect pin 3 (7.6 V) or pin 5 (3.5 V) to the Pico.
-- Power the Pico from USB only, and power it **before** the console (switch the console off first when done).
-- Don't push bare or solder-tinned wire ends into the console's socket; use a real plug.
-- Keep memory card slot 2 empty: it shares the select line with controller port 2.
-- Optional but helpful: a 10 kΩ resistor from SD CS to 3.3 V and a 100 nF capacitor across the card's power pins.
 
 ## 1. Make a video
 
@@ -130,8 +121,8 @@ Images in `disc/` are identical except for the controller-port clock:
 | Disc | Bus clock | Throughput |
 |---|---|---|
 | `sioplay_250k` | 250 kHz (stock) | ~23 KB/s, start here |
-| `sioplay_500k` | 500 kHz | ~40 KB/s |
-| `sioplay_1mhz` | 1 MHz | ~60 KB/s, if the Pico and wiring keep up |
+| `sioplay_500k` | 500 kHz | ~40 KB/s | Don't use this version yet: the 500 kHz and 1 MHz discs haven't been tested on real hardware.
+| `sioplay_1mhz` | 1 MHz | ~60 KB/s, if the Pico and wiring keep up | Don't use this version yet: the 500 kHz and 1 MHz discs haven't been tested on real hardware.
 
 Burn the `.cue` to a CD-R at the slowest speed and boot it. The clock is `SIO_BAUD_RELOAD` in `ps1/main.c` (33.8688 MHz ÷ value).
 
@@ -175,10 +166,7 @@ Every frame is one transaction on the controller bus. The PS1 is the master and 
 
 ## How this was made
 
-The PS1 player (`ps1/`), the video converter (`pc/make_video.py`) and the
-SD test firmware (`sdtest/`) were written by Claude, Anthropic's AI assistant.
-The Pico firmware (`pico/`) was written by me (alp0809). I also built the
-hardware and tested everything on a real PSone.
+Parts of the code were written with the help of Claude (AI). The hardware was built and tested by me on a real PSone.
 
 ## Credits
 
