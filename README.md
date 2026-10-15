@@ -10,7 +10,7 @@ PC: make_video.py  ->  SD card (video.bin)  ->  Pico 2  ->  controller port 2  -
 
 The Pico acts as a custom device on the PS1's controller/memory-card bus (SIO0). A homebrew PS1 program pulls compressed frames from it, decodes them and shows them full screen.
 
-NOT: Keep memory card slot 2 empty: it shares the select line with controller port 2.
+NOTE: Keep memory card slot 2 empty: it shares the select line with controller port 2.
 
 ## Contents
 
